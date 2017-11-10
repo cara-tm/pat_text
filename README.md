@@ -17,7 +17,8 @@ Same usage than the native tag:
 
 Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com/cara-tm/pat_lang_detect) for automatic process:
 
-    <txp:pat_text items="en Hello World!,fr Salut les Geeks !" lang='&lt;txp:variable name="visitor_lang" />
+    <txp:pat_lang_detect />
+    <txp:pat_text items="en Hello World!,fr Salut les Geeks !" lang='<txp:variable name="visitor_lang" />' />
 
 ## History and Changelogs
 
