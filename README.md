@@ -10,7 +10,7 @@ Same usage than the native tag:
     
 ## Attributes
 
-* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les geeks !"`). First 2 letters are the identifer for the corresponding lang (ISO2); each translations are comma separated. Default: none (but shows: "Nothing to display 😢").
+* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les geeks !"`). First 2 letters are the identifer for the corresponding lang (ISO2) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢").
 * `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms).
 
 ## Use of quotes into attribute
