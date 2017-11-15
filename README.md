@@ -24,6 +24,8 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
     <txp:pat_lang_detect />
     <txp:pat_text items="en Hello World!,fr Salut les Geeks !" lang='<txp:variable name="visitor_lang" />' />
 
+**Important note**: it seems that the TXP tags parser limits the lenght (but pretty long) of its attributes content. Please, for best usage of this plugin, set short strings into the @items@ attribute.
+
 ## History and Changelogs
 
 This plugin created for the "FOTO" theme.
