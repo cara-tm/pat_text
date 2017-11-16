@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.1.0
+ * @version: 0.1.1
  * @license: GPLv2
 */
 
@@ -37,7 +37,7 @@ function pat_text($atts, $thing='')
 		'lang'  => 'en',
 	), $atts));
 
-	(empty($lang) || strlen($lang) > 2) ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
+	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
 
 	$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
 	foreach ($list as $value) {
