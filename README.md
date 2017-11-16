@@ -30,4 +30,5 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
 
 This plugin created for the "FOTO" theme.
 
+16th November 2017: v 0.1.1
 10th Novembre 2017: v 0.1.0
