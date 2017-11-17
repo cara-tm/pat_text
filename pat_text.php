@@ -1,3 +1,4 @@
+<?php
 /**
  * A replacement to the <txp:text item="" /> tag for multilanguage strings support
  *
