@@ -28,6 +28,8 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
 
 **Important note**: it seems that the TXP tags parser limits the lenght (but pretty long) of its attributes content. Please, for best usage of this plugin, set short strings into the `items` attribute.
 
+_Tip and trick_: an invalid pair (eg. `fr ,`) with a country code following by nothing but a space (no translation string) allows to display nothing for the current website language (can be usefull in particular cases).
+
 ## History and Changelogs
 
 This plugin created for the "FOTO" theme.
