@@ -10,8 +10,10 @@ Same usage than the native tag:
     
 ## Attributes
 
-* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les geeks !"`). First 2 letters are the identifer for the corresponding lang (ISO2) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢").
-* `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms).
+* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢").
+* `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms). Default: the language sets in your TXP preferences.
+
+**Note**: Note: this plugin displays **nothing** if there are no match found; but displays the **first pair** of the `items` list if the `lang` attribute is empty (or blank as a fallback for pat_lang_detect, see below).
 
 ## Use of quotes into attribute
 
@@ -30,5 +32,5 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
 
 This plugin created for the "FOTO" theme.
 
-16th November 2017: v 0.1.1
-10th Novembre 2017: v 0.1.0
+* 16th November 2017: v 0.1.1 & v 0.1.2
+* 10th Novembre 2017: v 0.1.0
