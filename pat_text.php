@@ -6,7 +6,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.1.2
+ * @version: 0.1.3
  * @license: GPLv2
 */
 
@@ -42,14 +42,17 @@ function pat_text($atts, $thing='')
 	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
 
 	// Loop into the items list converted as an array
-	$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
+	if (strlen($items) < 264) {
+		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
 
-	foreach ($list as $value) {
-		if(substr($value, 0, 2) == $lang) {
-			$out = substr($value, 3);
+		foreach ($list as $value) {
+			if (substr($value, 0, 2) == $lang) {
+				$out = substr($value, 3);
+			}
 		}
+		// Return the matching string or a fallback
+		return $out ? $out : substr($list[0], 3);
 	}
-
-	// Return the matching string or a fallback
-	return $out ? $out : substr($list[0], 3);
+	else
+		return '';
 }
