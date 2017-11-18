@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.1.3
+ * @version: 0.1.4
  * @license: GPLv2
 */
 
@@ -39,13 +39,13 @@ function pat_text($atts, $thing='')
 		'lang'  => $current,
 	), $atts));
 
-	// Display error
+	// Display errors
 	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
+	assert_string($items);
 
 	// Loop into the items list converted as an array
-	if (count($items) < 264) {
-		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
-
+	$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
+	if (count($items, COUNT_RECURSIVE) < 264) {
 		foreach ($list as $value) {
 			if (substr($value, 0, 2) == $lang) {
 				$out = substr($value, 3);
