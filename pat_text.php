@@ -43,7 +43,7 @@ function pat_text($atts, $thing='')
 	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
 
 	// Loop into the items list converted as an array
-	if (strlen($items) < 264) {
+	if (count($items) < 264) {
 		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
 
 		foreach ($list as $value) {
