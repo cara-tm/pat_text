@@ -29,7 +29,7 @@ if (class_exists('\Textpattern\Tag\Registry')) {
  * @return string The corresponding string from the list
  *
  */
-function pat_text($atts, $thing='')
+function pat_text($atts)
 {
 	// The active language from TXP prefs
 	$current = substr(get_pref('language'), 0, 2);
@@ -45,7 +45,7 @@ function pat_text($atts, $thing='')
 
 	// Loop into the items list converted as an array
 	$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
-	if (count($items, COUNT_RECURSIVE) < 264) {
+	if (strlen($atts['items]) < 264) {
 		foreach ($list as $value) {
 			if (substr($value, 0, 2) == $lang) {
 				$out = substr($value, 3);
