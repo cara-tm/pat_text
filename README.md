@@ -30,7 +30,7 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
 
 ## Tips and tricks
 
-An invalid pair (eg. `fr ,`) with a country code following by nothing but a space (no translation string) allows to display nothing for the current website language (can be usefull in particular cases).
+An invalid pair (eg. `fr  `) with a country code following by nothing but 2 spaces (no translation strings) allows to display nothing for the current website language (can be usefull in particular cases).
 
 If you want to include commas in your translation strings, use the corresponding HTML entity `&#44;` instead.
 
