@@ -28,15 +28,15 @@ Can be used in conjonction with the *pat_lang_detect* plugin (https://github.com
 
 **Important note**: it seems that the TXP tags parser limits the lenght (but pretty long: 265 characters) of its attributes content. This plugin verifys this limit. Please, for best usage of this plugin, set short strings into the `items` attribute.
 
-## Tip and trick
+## Tips and tricks
 
 An invalid pair (eg. `fr ,`) with a country code following by nothing but a space (no translation string) allows to display nothing for the current website language (can be usefull in particular cases).
 
-If you want include commas in your translation strings, use the corresponding HTML entity `&#44;`.
+If you want to include commas in your translation strings, use the corresponding HTML entity `&#44;` instead.
 
-Integration with the [com_connect](https://forum.textpattern.io/viewtopic.php?id=47913) plugin (combined use of pat_detect_land & pat_text):
+Integration with the [*com_connect*](https://forum.textpattern.io/viewtopic.php?id=47913) plugin (combined use of *pat_detect_lang* & *pat_text*):
 
-    <txp:com_connect to='<txp:variable name="email" />' label='<txp:pat_text items="en Contact Form,es Formulario de contacto,de Kontakt Formular,fr Formulaire de Contact" lang=''<txp:variable name="visitor_lang" />'' />' copysender="1" browser_validate="0" subject="">
+    <txp:com_connect to="recipient@example.com" label='<txp:pat_text items="en Contact Form,es Formulario de contacto,de Kontakt Formular,fr Formulaire de Contact" lang=''<txp:variable name="visitor_lang" />'' />' copysender="1" browser_validate="0" subject="">
 
 ## History and Changelogs
 
