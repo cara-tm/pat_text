@@ -42,5 +42,6 @@ Integration with the [*com_connect*](https://forum.textpattern.io/viewtopic.php?
 
 This plugin created for the "FOTO" theme.
 
+* 21st November 2017: v 0.1.4 (final).
 * 16th November 2017: v 0.1.1 & v 0.1.2
 * 10th Novembre 2017: v 0.1.0
