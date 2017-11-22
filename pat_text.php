@@ -45,7 +45,7 @@ function pat_text($atts)
 
 	// Loop into the items list converted as an array
 	$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
-	if (strlen($atts['items]) < 264) {
+	if (strlen($atts['items']) < 264) {
 		foreach ($list as $value) {
 			if (substr($value, 0, 2) == $lang) {
 				$out = substr($value, 3);
