@@ -42,6 +42,7 @@ Integration with the [*com_connect*](https://forum.textpattern.io/viewtopic.php?
 
 This plugin created for the "FOTO" theme.
 
+* 23td November 2017: v 0.1.5 (for better interaction: loads current translation strings based on TXP language if the pat_lang_detect plugin is disabled).
 * 21st November 2017: v 0.1.4 (final).
 * 18th November 2017: v 0.1.3.
 * 16th November 2017: v 0.1.1 & v 0.1.2
