@@ -1,6 +1,6 @@
 # pat_text
 
-A replacement to the TXP tag `<txp:text item="" />` for multilinguage strings support.
+A replacement to the TXP tag `<txp:text item="" />` for multilinguage strings support and/or your UI components.
 
 ## Usage
 
