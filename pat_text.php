@@ -49,15 +49,19 @@ function pat_text($atts)
 	if (false != $exclusive)
 		$lang = gps('lang');
 
-	// Loop into the items list converted as an array
-	if ($items) {
+	if ( strlen($atts['items']) < 326 ) {
+
+		// Loop into the items list converted as an array
 		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
+		
 		foreach ($list as $value) {
-			if (substr($value, 0, 2) == $lang) {
+			if (false != $exclusive && $current == $variable['visitor_lang']) {
+				$out = ' ';
+			}
+			elseif (substr($value, 0, 2) == $lang) {
 				$out = substr($value, 3);
 			}
 		}
-
 		// Return the matching string or a fallback
 		return $out ? $out : substr($list[0], 3);
 	}
