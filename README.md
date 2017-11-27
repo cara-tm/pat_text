@@ -10,7 +10,7 @@ Same usage than the native tag:
     
 ## Attributes
 
-* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢"); lenght limit: 264 characters.
+* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢"); lenght limit: 326 characters.
 * `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms). Default: the language sets in your TXP preferences.
 
 **Note**: Note: this plugin displays **nothing** if there are no match found; but displays the **first pair** of the `items` list if the `lang` attribute is empty (or blank as a fallback for pat_lang_detect, see below).
