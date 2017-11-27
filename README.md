@@ -1,4 +1,4 @@
-# pat_text
+# <txp:pat_text />
 
 A replacement to the TXP tag `<txp:text item="" />` for multilinguage strings support and/or your UI components.
 
@@ -6,10 +6,11 @@ A replacement to the TXP tag `<txp:text item="" />` for multilinguage strings su
 
 Same usage than the native tag:
 
-    <txp:pat_text items="" lang="" />
+    <txp:pat_text exclusive="" items="" lang="" />
     
 ## Attributes
 
+* `exclusive` (boolean): if set to `true` (`1`) retrieve nothing when the visitor language is the same as the default TXP one. Default: `false`(`0`).
 * `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢"); lenght limit: 326 characters.
 * `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms). Default: the language sets in your TXP preferences.
 
