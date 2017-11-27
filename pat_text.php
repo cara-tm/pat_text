@@ -45,17 +45,13 @@ function pat_text($atts)
 	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
 	assert_string($items);
 
-	// Overwritting
-	if (false != $exclusive)
-		$lang = gps('lang');
-
 	if ( strlen($atts['items']) < 326 ) {
 
 		// Loop into the items list converted as an array
 		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
 		
 		foreach ($list as $value) {
-			if (false != $exclusive && $current == $variable['visitor_lang']) {
+			if (false != $exclusive && $current == $lang) {
 				$out = ' ';
 			}
 			elseif (substr($value, 0, 2) == $lang) {
