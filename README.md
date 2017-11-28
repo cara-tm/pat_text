@@ -39,6 +39,17 @@ Integration with the [*com_connect*](https://forum.textpattern.io/viewtopic.php?
 
     <txp:com_connect to="recipient@example.com" label='<txp:pat_text items="en Contact Form,es Formulario de contacto,de Kontakt Formular,fr Formulaire de Contact" lang=''<txp:variable name="visitor_lang" />'' />' copysender="1" browser_validate="0" subject="">
 
+## Case study
+
+For the "FOTO" theme, I needed to create a `default` page template where all UI elements will be available into 4 different languages.
+Furthermore, I needed to display a message to inform all foreign visitors that a translated inner page is available into their language.
+Here is how this kind of message had been made in the top of the page:
+
+    <txp:pat_lang_detect />
+    <txp:variable name="check" value='<txp:pat_text exclusive="1" items=''en en">This website in your language,de de">Diese Website in Ihrer Sprache,es es">Este sitio web en su idioma,fr fr">Ce site dans votre langue,  '' lang=''<txp:variable name="visitor_lang" />'' />' />
+    <txp:if_variable name="check"><div class="full langs"><txp:if_variable name="visitor_lang" value='<txp:pat_lang_default />'><txp:else /><p><a href="<txp:site_url /><txp:variable name="check" /></a></p></div></txp:if_variable></txp:if_variable>
+
+
 ## History and Changelogs
 
 This plugin created for the "FOTO" theme.
