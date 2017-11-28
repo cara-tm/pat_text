@@ -42,13 +42,13 @@ function pat_text($atts)
 	), $atts));
 
 	// Display errors
-	strlen($lang) > 2 ? trigger_error( gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING ) : '';
+	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
-	if ( strlen($atts['items']) < 326 ) {
+	if (strlen($atts['items']) < 326) {
 
 		// Loop into the items list converted as an array
-		$list = explode( ',', preg_replace('/\s*,\s*/', ',', $items) );
+		$list = explode(',', preg_replace('/\s*,\s*/', ',', $items));
 		
 		foreach ($list as $value) {
 			if (false != $exclusive && $current == $lang)
