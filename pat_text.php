@@ -60,6 +60,6 @@ function pat_text($atts)
 		return $out ? $out : substr($list[0], 3);
 	}
 	else
-		return '';
+		return;
 
 }
