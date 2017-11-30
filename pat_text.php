@@ -32,6 +32,8 @@ if (class_exists('\Textpattern\Tag\Registry')) {
  */
 function pat_text($atts)
 {
+	// The active language from TXP prefs in ISO2 code
+	$current = substr(get_pref('language'), 0, 2);
 
 	extract(lAtts(array(
 		'items'      => $current.' Nothing to display 😢',
@@ -39,8 +41,6 @@ function pat_text($atts)
 		'exclusive'  => false,
 	), $atts));
 	
-	// The active language from TXP prefs in ISO2 code
-	$current = substr(get_pref('language'), 0, 2);
 
 	// Display errors
 	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
