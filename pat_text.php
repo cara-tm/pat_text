@@ -36,7 +36,7 @@ function pat_text($atts)
 	$current = substr(get_pref('language'), 0, 2);
 
 	extract(lAtts(array(
-		'items'      => $current.' Nothing to display 😢',
+		'items'      => $current.' Nothing to display.',
 		'lang'       => $current,
 		'exclusive'  => false,
 	), $atts));
@@ -49,7 +49,7 @@ function pat_text($atts)
 	if (strlen($atts['items']) < 326) {
 
 		// Loop into the items list converted as an array
-		$list = array_map('trim', explode(',', $items));
+		$list = do_list($items);
 		foreach ($list as $value) {
 			// Same language as TXP default and exclusive is true: do nothing
 			if (false != $exclusive && $current == $lang)
