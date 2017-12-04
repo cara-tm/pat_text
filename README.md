@@ -2,6 +2,8 @@
 
 A replacement to the TXP tag `<txp:text item="" />` for multilinguage strings support and/or your UI components.
 
+_This plugin is intended to be used for UI elements into your templates without supercharge your database with Textpacks injection but can't support long strings and/or HTML tags in it (326 characters limit, spaces included)_.
+
 ## Usage
 
 Same usage than the native tag:
@@ -11,7 +13,7 @@ Same usage than the native tag:
 ## Attributes
 
 * `exclusive` (boolean): if set to `true` (`1`) retrieve nothing when the visitor language is the same as the default TXP one. Default: `false`(`0`).
-* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display 😢"); lenght limit: 326 characters.
+* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display."); lenght limit: 326 characters.
 * `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms). Default: the language sets in your TXP preferences.
 
 **Note**: Note: this plugin displays **nothing** if there are no match found; but displays the **first pair** of the `items` list if the `lang` attribute is empty (or blank as a fallback for pat_lang_detect, see below).
