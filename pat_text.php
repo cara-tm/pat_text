@@ -52,7 +52,7 @@ function pat_text($atts)
 		$list = do_list($items);
 		foreach ($list as $value) {
 			// Same language as TXP default and exclusive is true: do nothing
-			if (false != $exclusive && $current == $lang)
+			if (true === $exclusive && $current == $lang)
 				$out = ' ';
 			// Gives the matching string for a language
 			elseif (substr($value, 0, 2) == $lang)
