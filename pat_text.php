@@ -32,36 +32,69 @@ if (class_exists('\Textpattern\Tag\Registry')) {
  */
 function pat_text($atts)
 {
-	// The active language from TXP prefs in ISO2 code
-	$current = substr(get_pref('language'), 0, 2);
+	global $variable;
+
+	// The active ISO2 code language from TXP prefs
+	$current = substr(get_pref('language', TEXTPATTERN_DEFAULT_LANG, true), 0, 2);
 
 	extract(lAtts(array(
-		'items'      => $current.' Nothing to display.',
-		'lang'       => $current,
-		'exclusive'  => false,
+		'items'     => $current.' Nothing to display.',
+		'lang'      => $current,
+		'exclusive' => false,
 	), $atts));
-	
 
 	// Display errors
 	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
-	if (strlen($atts['items']) < 326) {
+	if (empty($lang) && $variable['visitor_lang'])
+		$lang = $variable['visitor_lang'];
 
-		// Loop into the items list converted as an array
-		$list = do_list($items);
-		foreach ($list as $value) {
-			// Same language as TXP default and exclusive is true: do nothing
-			if (true === $exclusive && $current == $lang)
-				$out = ' ';
-			// Gives the matching string for a language
-			elseif (substr($value, 0, 2) == $lang)
-				$out = substr($value, 3);
+	// Locale section not exists?
+	if (null == _pat_detect_section_name($lang))
+		$out = ' ';
+	else {
+		if (strlen($atts['items']) < 326) {
+
+			// Loop into the items list converted as an array
+			$list = do_list($items);
+			$out = '';
+
+			foreach ($list as $value) {
+				// Same language as TXP default and locale sections exist or exclusive is true: do nothing
+				if (true === $exclusive && $current == $lang)
+					$out = ' ';
+				// Gives the matching string for a language
+				elseif (substr($value, 0, 2) == $lang)
+					$out = substr($value, 3);
+			}
+			// Return the matching string or a fallback
+			return $out ? $out : substr($list[0], 3);
 		}
-		// Returns the matching string or the first occurrence as a fallback
-		return $out ? $out : substr($list[0], 3);
+		else
+			return;
 	}
-	else
-		return;
 
+}
+
+
+/**
+ * Compares a variable from names stored into the 'section' table
+ *
+ * @param  $code string ISO2 language code
+ * @return $code string ISO2 language code found in DB
+ */
+function _pat_detect_section_name($code)
+{
+	global $DB;
+	$DB = new DB;
+
+	$rs = safe_field('name', 'txp_section', "name = '".doSlash($code)."'");
+
+	if ($rs)
+		$out = $code;
+	else
+		$out = '';
+
+	return $out;
 }
