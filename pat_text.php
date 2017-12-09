@@ -39,7 +39,7 @@ function pat_text($atts)
 
 	extract(lAtts(array(
 		'items'     => $current.' Nothing to display.',
-		'lang'      => $current,
+		'lang'      => '',
 		'exclusive' => false,
 	), $atts));
 
