@@ -1,4 +1,3 @@
-<?php
 /**
  * A replacement to the <txp:text item="" /> tag for multilanguage strings support
  *
@@ -39,7 +38,7 @@ function pat_text($atts)
 
 	extract(lAtts(array(
 		'items'     => $current.' Nothing to display.',
-		'lang'      => '',
+		'lang'      => false,
 		'exclusive' => false,
 	), $atts));
 
@@ -47,23 +46,25 @@ function pat_text($atts)
 	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
+	// Empty $out
+	$out = ' ';
+
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
 	// Locale section not exists?
 	if (null == _pat_detect_section_name($lang))
-		$out = ' ';
+		$out;
 	else {
-		if (strlen($atts['items']) < 326) {
+		if (326 > strlen($atts['items'])) {
 
 			// Loop into the items list converted as an array
 			$list = do_list($items);
-			$out = '';
 
 			foreach ($list as $value) {
 				// Same language as TXP default and locale sections exist or exclusive is true: do nothing
 				if (true === $exclusive && $current == $lang)
-					$out = ' ';
+					$out;
 				// Gives the matching string for a language
 				elseif (substr($value, 0, 2) == $lang)
 					$out = substr($value, 3);
