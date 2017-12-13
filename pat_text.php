@@ -1,3 +1,4 @@
+<?php
 /**
  * A replacement to the <txp:text item="" /> tag for multilanguage strings support
  *
@@ -29,7 +30,7 @@ if (class_exists('\Textpattern\Tag\Registry')) {
  * @return string             The corresponding string from the list
  *
  */
-function pat_text($atts)
+function pat_text($atts, $thing = null)
 {
 	global $variable;
 
@@ -38,7 +39,7 @@ function pat_text($atts)
 
 	extract(lAtts(array(
 		'items'     => $current.' Nothing to display.',
-		'lang'      => false,
+		'lang'      => '',
 		'exclusive' => false,
 	), $atts));
 
@@ -69,7 +70,7 @@ function pat_text($atts)
 				elseif (substr($value, 0, 2) == $lang)
 					$out = substr($value, 3);
 			}
-			// Return the matching string or a fallback
+			// Result or first item from the list as a fallback for no supported languages
 			return $out ? $out : substr($list[0], 3);
 		}
 		else
