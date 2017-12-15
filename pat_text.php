@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.1.7
+ * @version: 0.1.8
  * @license: GPLv2
 */
 
@@ -39,7 +39,7 @@ function pat_text($atts, $thing = null)
 
 	extract(lAtts(array(
 		'items'     => $current.' Nothing to display.',
-		'lang'      => '',
+		'lang'      => false,
 		'exclusive' => false,
 	), $atts));
 
@@ -48,7 +48,7 @@ function pat_text($atts, $thing = null)
 	assert_string($items);
 
 	// Empty $out
-	$out = ' ';
+	$out = false;
 
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];

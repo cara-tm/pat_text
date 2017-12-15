@@ -1,0 +1,56 @@
+# Name: pat_text v0.1.8 (compressed)
+# Type: Public plugin
+# A replacement to the <txp:text item="" /> tag for multilinguage strings support
+# Author: Patrick LEFEVRE
+# URL: https://github.com/cara-tm/
+# Recommended load order: 5
+
+# .....................................................................
+# This is a plugin for Textpattern CMS - http://textpattern.com/
+# To install: textpattern > admin > plugins
+# Paste the following text into the 'Install plugin' box:
+# .....................................................................
+
+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
+nMTYqL79Dd1cvrDHFAAA
