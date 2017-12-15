@@ -56,6 +56,7 @@ Here is how this kind of message had been made in the top of the page:
 
 This plugin created for the "FOTO" theme.
 
+* 15th December 2017: v 0.1.8
 * 9th December 2017: v 0.1.7
 * 25th November 2017: v 0.1.6
 * 23td November 2017: v 0.1.5 (for better interaction: loads current translation strings based on TXP language if the pat_lang_detect plugin is disabled).
