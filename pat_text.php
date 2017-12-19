@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.1.8
+ * @version: 0.2
  * @license: GPLv2
 */
 
@@ -24,15 +24,15 @@ if (class_exists('\Textpattern\Tag\Registry')) {
 /**
  * Main plugin function to display translations by choosen country code
  *
- * @param  $items string      Comma separated list of translations
- * @param  $lang  string      Country code (ISO2)
+ * @param  $items     string  Comma separated list of translations
+ * @param  $lang      string  Country code (ISO2)
  * @param  $exclusive boolean Overwrites the current language and sniffs ?lang= to get a new one
- * @return string             The corresponding string from the list
+ * @return $atts      string  The corresponding string from the item list
  *
  */
 function pat_text($atts, $thing = null)
 {
-	global $variable;
+	global $pretext, $variable;
 
 	// The active ISO2 code language from TXP prefs
 	$current = substr(get_pref('language', TEXTPATTERN_DEFAULT_LANG, true), 0, 2);
@@ -47,36 +47,27 @@ function pat_text($atts, $thing = null)
 	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
-	// Empty $out
+	// Default PHP variable
 	$out = false;
 
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
-	// Locale section not exists?
-	if (null == _pat_detect_section_name($lang))
-		$out;
-	else {
-		if (326 > strlen($atts['items'])) {
-
-			// Loop into the items list converted as an array
-			$list = do_list($items);
-
-			foreach ($list as $value) {
-				// Same language as TXP default and locale sections exist or exclusive is true: do nothing
-				if (true === $exclusive && $current == $lang)
-					$out;
-				// Gives the matching string for a language
-				elseif (substr($value, 0, 2) == $lang)
-					$out = substr($value, 3);
-			}
-			// Result or first item from the list as a fallback for no supported languages
-			return $out ? $out : substr($list[0], 3);
-		}
+	// Loop into the items list converted as an array
+	$list = array_unique(array_map('ltrim', explode(',', $items)));
+	foreach ($list as $value) {
+		// Attribute exclusive is true and visitor language is the same as TXP one or locale hasn't a section 
+		if (true == $exclusive && (substr($value, 0, 2) == $lang || (strlen($pretext['s']) == 2 && false == _pat_detect_section_name($variable['visitor_lang']))))
+			$out;
+		// Gives the matching string for a language
+		elseif (strtolower(substr($value, 0, 2)) == $lang)
+			$out = substr($value, 3);
+		// Result or first item from the list as a fallback for no supported languages
 		else
-			return;
+			$out = substr($list[0], 3);
 	}
 
+	return $out;
 }
 
 
@@ -96,7 +87,7 @@ function _pat_detect_section_name($code)
 	if ($rs)
 		$out = $code;
 	else
-		$out = '';
+		$out = false;
 
 	return $out;
 }

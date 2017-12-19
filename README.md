@@ -56,6 +56,7 @@ Here is how this kind of message had been made in the top of the page:
 
 This plugin created for the "FOTO" theme.
 
+* 17th December 2017: v 0.2
 * 15th December 2017: v 0.1.8
 * 9th December 2017: v 0.1.7
 * 25th November 2017: v 0.1.6
