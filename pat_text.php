@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.2
+ * @version: 0.2.1
  * @license: GPLv2
 */
 
@@ -32,7 +32,7 @@ if (class_exists('\Textpattern\Tag\Registry')) {
  */
 function pat_text($atts, $thing = null)
 {
-	global $pretext, $variable;
+	global $variable;
 
 	// The active ISO2 code language from TXP prefs
 	$current = substr(get_pref('language', TEXTPATTERN_DEFAULT_LANG, true), 0, 2);
@@ -47,28 +47,38 @@ function pat_text($atts, $thing = null)
 	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
-	// Default PHP variable
-	$out = false;
-
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
-	// Loop into the items list converted as an array
+	// $items list convertion into an array
 	$list = array_unique(array_map('ltrim', explode(',', $items)));
-	foreach ($list as $value) {
-		// Attribute exclusive is true and visitor language is the same as TXP one or locale hasn't a section 
-		if (true == $exclusive && (substr($value, 0, 2) == $lang || (strlen($pretext['s']) == 2 && false == _pat_detect_section_name($variable['visitor_lang']))))
-			$out;
-		// Gives the matching string for a language
-		elseif (strtolower(substr($value, 0, 2)) == $lang)
-			$out = substr($value, 3);
-		// Result or first item from the list as a fallback for no supported languages
-		else
-			$out = substr($list[0], 3);
+
+	// Temporary array declaration
+	$temp = array();
+
+	// Converts the $items list into an array with locale => translation as values
+	foreach($list as $data) {
+		$temp[substr($data, 0, 2)] = substr($data, 3);
+	}
+
+	// A $lang value (ISO2 code) is found into the array ($temp)
+	if (!empty($temp[$lang])) {
+		$out = $temp[$lang];
+	// Only ISO2 codes into the $items list are found: choose $lang value
+	} elseif (empty($temp[$lang]) and isset($temp[$lang])) {
+		$out = $lang;
+	// No locale supported: use first translation into the $items list
+	} elseif (!isset($temp[$lang])) {
+		$out = substr($list[0], 3);
+	// No translations, first ISO2 code into the corresponding $items list from $temp as a fallback 
+	} else {
+		$out = array_shift(array_keys($temp));
 	}
 
 	return $out;
+	
 }
+
 
 
 /**
