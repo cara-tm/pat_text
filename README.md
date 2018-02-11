@@ -12,7 +12,6 @@ Same usage than the native tag:
     
 ## Attributes
 
-* `exclusive` (boolean): if set to `true` (`1`) retrieve nothing when the visitor language is the same as the default TXP one. Default: `false`(`0`).
 * `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!|fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code); each translations are pipe (`|` sign) separated. Default: none (but shows: "Nothing to display.").
 * `lang` (string): the country for the corresponding translation to display (the plugin convert it into ISO2) in the current context (i.e. page template or form). Default: the language sets in your TXP preferences.
 * `exclusive` (boolean) optional: overwrites the lang attribute content when using <code>?lang=</code> into URLs.

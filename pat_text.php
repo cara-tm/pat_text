@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.2.2
+ * @version: 0.2.4
  * @license: GPLv2
 */
 
@@ -51,6 +51,10 @@ function pat_text($atts, $thing = null)
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
+    // Overwrite $lang
+    if (isset(gps('lang')))
+        $lang = gps('lang');
+
 	// Keeps only the 2 first characters
 	$lang = substr($lang, 0, 2);
 
@@ -82,27 +86,3 @@ function pat_text($atts, $thing = null)
 	return ltrim($out);
 	
 }
-
-
-
-/**
- * Compares a variable from names stored into the 'section' table
- *
- * @param  $code string ISO2 language code
- * @return $code string ISO2 language code found in DB
- */
-function _pat_detect_section_name($code)
-{
-	global $DB;
-	$DB = new DB;
-
-	$rs = safe_field('name', 'txp_section', "name = '".doSlash($code)."'");
-
-	if ($rs)
-		$out = $code;
-	else
-		$out = false;
-
-	return $out;
-}
-
