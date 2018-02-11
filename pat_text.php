@@ -7,7 +7,7 @@
  * @type:    Public
  * @prefs:   no
  * @order:   5
- * @version: 0.2.1
+ * @version: 0.2.2
  * @license: GPLv2
 */
 
@@ -44,21 +44,25 @@ function pat_text($atts, $thing = null)
 	), $atts));
 
 	// Display errors
-	strlen($lang) > 2 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
+	strlen($lang) > 5 ? trigger_error(gTxt('invalid_attribute_value', array('{name}' => 'lang')), E_USER_WARNING) : '';
 	assert_string($items);
 
+	// Got variable value if exists
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
+	// Keeps only the 2 first characters
+	$lang = substr($lang, 0, 2);
+
 	// $items list convertion into an array
-	$list = array_unique(array_map('ltrim', explode(',', $items)));
+	$list = array_unique(array_map('ltrim', explode('|', $items)));
 
 	// Temporary array declaration
 	$temp = array();
 
 	// Converts the $items list into an array with locale => translation as values
 	foreach($list as $data) {
-		$temp[substr($data, 0, 2)] = substr($data, 3);
+		$temp[substr($data, 0, 2)] = substr($data, 2);
 	}
 
 	// A $lang value (ISO2 code) is found into the array ($temp)
@@ -75,7 +79,7 @@ function pat_text($atts, $thing = null)
 		$out = array_shift(array_keys($temp));
 	}
 
-	return $out;
+	return ltrim($out);
 	
 }
 
@@ -101,3 +105,4 @@ function _pat_detect_section_name($code)
 
 	return $out;
 }
+

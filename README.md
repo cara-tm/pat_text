@@ -13,8 +13,9 @@ Same usage than the native tag:
 ## Attributes
 
 * `exclusive` (boolean): if set to `true` (`1`) retrieve nothing when the visitor language is the same as the default TXP one. Default: `false`(`0`).
-* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!, fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code) followed by a space (required) then the translated string (required); each translations are comma separated. Default: none (but shows: "Nothing to display."); lenght limit: 326 characters.
-* `lang` (string): the 2 letters of the country for the corresponding translation to display (ISO2) in the current context (i.e. page templates or forms). Default: the language sets in your TXP preferences.
+* `items` (string): a pair items list, comma separated, of entries by translations (e.g. `items="en Hello World!|fr Salut les Geeks !"`). First 2 letters are the identifer for the corresponding language (ISO2 code); each translations are pipe (`|` sign) separated. Default: none (but shows: "Nothing to display.").
+* `lang` (string): the country for the corresponding translation to display (the plugin convert it into ISO2) in the current context (i.e. page template or form). Default: the language sets in your TXP preferences.
+* `exclusive` (boolean) optional: overwrites the lang attribute content when using <code>?lang=</code> into URLs.
 
 **Note**: Note: this plugin displays **nothing** if there are no match found; but displays the **first pair** of the `items` list if the `lang` attribute is empty (or blank as a fallback for pat_lang_detect, see below).
 
@@ -56,6 +57,8 @@ Here is how this kind of message had been made in the top of the page:
 
 This plugin created for the "FOTO" theme.
 
+* 13th January 2018: v 0.2.3.
+* 24th December 2017: v 0.2.2 
 * 23rd December 2017: v 0.2.1
 * 17th December 2017: v 0.2
 * 15th December 2017: v 0.1.8
