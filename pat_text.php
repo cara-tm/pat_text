@@ -40,7 +40,6 @@ function pat_text($atts, $thing = null)
 	extract(lAtts(array(
 		'items'     => $current.' Nothing to display.',
 		'lang'      => false,
-		'exclusive' => false,
 	), $atts));
 
 	// Display errors
@@ -51,9 +50,10 @@ function pat_text($atts, $thing = null)
 	if (empty($lang) && $variable['visitor_lang'])
 		$lang = $variable['visitor_lang'];
 
-    // Overwrite $lang
-    if (isset(gps('lang')))
-        $lang = gps('lang');
+	// Or from a query parameter
+	if (gps('lang'))
+		$lang = gps('lang');
+
 
 	// Keeps only the 2 first characters
 	$lang = substr($lang, 0, 2);
